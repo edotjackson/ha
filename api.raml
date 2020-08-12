@@ -1,0 +1,90 @@
+#%RAML 1.0
+title:                        Home Advisor
+version:                      v0
+protocols:                    [HTTP]
+baseUri:                      http://3.86.103.202/api/{version}
+mediaType:                    application/json
+documentation:
+  - title:                    Introduction
+    content:                  A RESTful system that allows a user to set and retrieve information about businesses within our network.
+
+types: !include types.raml
+
+/businesses:
+  post:
+    description: Retrieve a list of businesses using the parameters provided.
+    body:
+      type: Filter
+      example: |
+        {
+          "name_contains" : "Business",
+          "buisiness_days_open" : ["Monday", "Tuesday", "Friday"],
+          "open_from" : 7,
+          "open_to" : 18,
+          "jobs" : ["Maid Service", "House Cleaning", "Moving Services"],
+          "location" : 80262,
+          "radius" : 50,
+          "review_rating" : 4,
+          "sort_type" : 1,
+          "sort_method" : 1
+        }
+    responses:
+      200:
+        body: Business[]
+      401:
+      403:
+
+  put:
+      description: Add a new business to the database
+      body:
+        type: Business
+        examples:
+          Businesses:
+            {
+              "businessName": "Sample Business #1",
+              "businessHours":
+                [
+                  {
+                    "dayOfWeek": "Monday",
+                    "open": 9,
+                    "close": 17
+                  },
+                  {
+                    "dayOfWeek": "Tuesday",
+                    "open": 9,
+                    "close": 17
+                  },
+                  {
+                    "dayOfWeek": "Friday",
+                    "open": 9,
+                    "close": 17
+                  }
+                ],
+              "businessAddress":
+                {
+                "addressLine1": "1234 Fake St",
+                "addressLine2": "Suite 500",
+                "city": "Denver",
+                "stateAbbr": "CO",
+                "postal": "80210"
+                },
+              "operatingCities": ["Denver", "Lakewood", "Thornton", "Golden", "Arvada", "Centennial", "Parker"],
+              "workTypes": ["Maid Service", "House Cleaning", "Moving Services"],
+              "reviews":
+                [
+                  {
+                    "ratingScore": 4.5,
+                    "customerComment": "Use them weekly to clean our home. Do a great job every time"
+                  },
+                  {
+                    "ratingScore": 4,
+                    "customerComment": "Helped us move homes, very timely"
+                  }
+                ]
+            }
+      responses:
+        200:
+          body: Business
+        400:
+        401:
+        403:

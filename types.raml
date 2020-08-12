@@ -1,0 +1,106 @@
+#----Enums----#
+SortType:
+  type: number
+  minimum: 0
+  maximum: 1
+  description: 0 - Name<br>1 - Rating
+
+SortMethod:
+  type: number
+  minimum: 0
+  maximum: 1
+  description: 0 - Ascending<br>1 - Descending
+
+#---Objects---#
+
+Day:
+  type: string
+  description: Monday<br>Tuesday<br>Wednesday<br>Thursday<br>Friday<br>Saturday<br>Sunday
+
+OperatingCity:
+  type: string
+  description: Business is available to operate here
+
+WorkType:
+  type: string
+  description: Business provides this service
+
+BusinessHour:
+  type: object
+  description: Daily hours of operation
+  properties:
+    dayOfWeek: Day
+    open: number
+    close: number
+
+BusinessAddress:
+  type: object
+  properties:
+    addressLine1: string
+    addressLine2?: string
+    city: string
+    stateAbbr: string
+    postal: string
+
+Review:
+  type: object
+  description: Customer reviews
+  properties:
+    ratingScore:
+      type: number
+      format: float
+    customerComment: string
+
+Business:
+  type: object
+  properties:
+    businessName: string
+    rating:
+      type: number
+      format: float
+    businessHours:
+      type: BusinessHour[]
+      minItems: 1
+    businessAddress:
+      type: BusinessAddress
+    operatingCities:
+      type: OperatingCity[]
+    workTypes:
+      type: WorkType[]
+    reviews: Review[]
+
+Filter:
+  type: object
+  properties:
+      name_contains?:
+        type: string
+        description: Business contains the following text in the name.
+      buisiness_days_open?:
+        type: Day[]
+        minItems: 1
+        description: Business is open on all of the specified days in the array.
+      open_from?:
+        type: integer
+        description: Business is open from this time or earlier. Entered as an integer in 24 hour format.
+      open_to?:
+        type: integer
+        description: Business is open until this time or later. Entered as an integer in 24 hour format.
+      jobs?:
+        type: string[]
+        minItems: 1
+        description: Business performs all of the jobs contained within the array.
+      location?:
+        type: integer
+        description: Business operates in cities with a geographical location within [radius] of this postal code. If no radius is enteredm default to 25 miles.
+      radius?:
+        type: integer
+        description: Defined the distance from the Locatoin center point. When included, Location postal code is required.
+      review_rating?:
+        type: number
+        description: Business has an average review rating greater than or equal to this value
+      sort_type?:
+        type: SortType
+        description: Sort businesses by [0] Name or [1] Average Rating
+      sort_method?:
+        type: SortMethod
+        description: Sort businesses in [0] Ascending or [1] Descending order
