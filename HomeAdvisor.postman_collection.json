@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "8e88ed2c-aa14-43f2-bdf0-f246aae1c818",
+		"name": "HomeAdvisor - edj",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://3.86.103.202/api/v0/businesses",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"businessName\": \"Sample Business #1\",\r\n\t\"businessHours\": [{\r\n\t\t\"dayOfWeek\": \"Monday\",\r\n\t\t\"open\": 9,\r\n\t\t\"close\": 17\r\n\t}, {\r\n\t\t\"dayOfWeek\": \"Tuesday\",\r\n\t\t\"open\": 9,\r\n\t\t\"close\": 17\r\n\t}, {\r\n\t\t\"dayOfWeek\": \"Wednesday\",\r\n\t\t\"open\": 9,\r\n\t\t\"close\": 17 \r\n\t}, {\r\n\t\t\"dayOfWeek\": \"Thursday\",\r\n\t\t\"open\": 9,\r\n\t\t\"close\": 17\r\n\t}, {\r\n\t\t\"dayOfWeek\": \"Friday\",\r\n\t\t\"open\": 9,\r\n\t\t\"close\": 17\r\n\t}],\r\n\t\"businessAddress\": {\r\n\t\t\"addressLine1\": \"1234 Fake St\",\r\n\t\t\"addressLine2\": \"Suite 500\",\r\n\t\t\"city\": \"Denver\",\r\n\t\t\"stateAbbr\": \"CO\",\r\n\t\t\"postal\": \"80210\"\r\n\t},\r\n\t\"operatingCities\": [\"Denver\", \"Lakewood\", \"Thornton\", \"Golden\", \"Arvada\", \"Centennial\", \"Parker\"],\r\n\t\"workTypes\": [\"Maid Service\", \"House Cleaning\", \"Moving Services\"],\r\n\t\"reviews\": [{\r\n\t\t\"ratingScore\": 5,\r\n\t\t\"customerComment\": \"Use them weekly to clean our home. Do a great job every time\"\r\n\t}, {\r\n\t\t\"ratingScore\": 5,\r\n\t\t\"customerComment\": \"Helped us move homes, very timely\"\r\n\t}, {\r\n\t\t\"ratingScore\": 5,\r\n\t\t\"customerComment\": \"On time, did a good job\"\r\n\t}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.86.103.202/api/v0/businesses",
+					"protocol": "http",
+					"host": [
+						"3",
+						"86",
+						"103",
+						"202"
+					],
+					"path": [
+						"api",
+						"v0",
+						"businesses"
+					]
+				},
+				"description": "This allows you to add a business object to the database via the API. "
+			},
+			"response": []
+		},
+		{
+			"name": "http://3.86.103.202/api/v0/businesses",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name_contains\":\"a\",\r\n  \"business_days_open\": [\r\n    \"Monday\"\r\n  ],\r\n  \"open_from\": 9,\r\n  \"open_to\": 18,\r\n  \"jobs\": [\r\n    \"Maid Service\",\r\n    \"House Cleaning\",\r\n    \"Moving Services\"\r\n  ],\r\n  \"location\" : 80260,\r\n  \"radius\" : 50,\r\n  \"review_rating\": 2,\r\n  \"sort_type\": 0,\r\n  \"sort_method\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.86.103.202/api/v0/businesses",
+					"protocol": "http",
+					"host": [
+						"3",
+						"86",
+						"103",
+						"202"
+					],
+					"path": [
+						"api",
+						"v0",
+						"businesses"
+					]
+				},
+				"description": "This allows you to search for businesses in the database using the parameters provided."
+			},
+			"response": []
+		},
+		{
+			"name": "3.86.103.202/api/v0",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "3.86.103.202/api/v0",
+					"host": [
+						"3",
+						"86",
+						"103",
+						"202"
+					],
+					"path": [
+						"api",
+						"v0"
+					]
+				},
+				"description": "Gets the API documentation"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
